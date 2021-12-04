@@ -10,7 +10,8 @@ namespace AdventOfCode.Solution.Helpers
         {
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
-                HasHeaderRecord = false
+                HasHeaderRecord = false,
+                
             };
 
              using (var csv = new CsvReader(reader, config))

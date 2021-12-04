@@ -32,6 +32,9 @@
       <Content Include="TestData/Dive.csv">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <Content Include="TestData/DiagnosticReport.csv">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>
