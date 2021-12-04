@@ -4,7 +4,7 @@ namespace AdventOfCode.Solution.Year2021
 {
     public class Day1
     {
-        private ICsvService _csvHelper;
+        private readonly ICsvService _csvHelper;
 
         public Day1(ICsvService csvHelper)
         {
@@ -37,7 +37,7 @@ namespace AdventOfCode.Solution.Year2021
 
         public int SonarSweep(string filepath)
         {
-            var measurements = _csvHelper.GetListOfInt(filepath);
+            var measurements = _csvHelper.GetListOf<int>(filepath);
             return GetNumberOfIncreases(measurements);
         }
 
@@ -57,7 +57,7 @@ namespace AdventOfCode.Solution.Year2021
 
         public int SonarSweepWithWindow(string filepath)
         {
-            var measurements = _csvHelper.GetListOfInt(filepath);
+            var measurements = _csvHelper.GetListOf<int>(filepath);
             return GetSlidingWindowIncreases(measurements);
         }
 

@@ -11,18 +11,17 @@ namespace AdventOfCode.Solution.Helpers
             _csvWrapper = csvWrapper ?? throw new ArgumentNullException(nameof(csvWrapper));
         }
 
-        public List<int> GetListOfInt(string filepath)
+        public List<T> GetListOf<T>(string filepath)
         {
             if (string.IsNullOrWhiteSpace(filepath)) throw new ArgumentNullException(nameof(filepath));
-            var contents = new List<int>();
+            var contents = new List<T>();
 
             using (var reader = new StreamReader(filepath))
             {
-                contents = _csvWrapper.GetRecords<int>(reader);
+                contents = _csvWrapper.GetRecords<T>(reader);
             }
             
             return contents;
         }
-
     }
 }

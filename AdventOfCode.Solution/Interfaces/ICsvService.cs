@@ -1,4 +1,4 @@
 public interface ICsvService
 {
-    List<int> GetListOfInt(string filepath);
+    List<T> GetListOf<T>(string filepath);
 }
