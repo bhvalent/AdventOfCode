@@ -107,6 +107,77 @@ namespace AdventOfCode.Test.Year2021
             Assert.Equal(3813416, result);
         }
 
+        [Fact]
+        public void Day3_LifeSupportRating_ShouldReturnZeroWhenPassedNull()
+        {
+            // arrange
+            _mockCsvHelper.Setup(x => x.GetListOf<DiagnosticData>(It.IsAny<string>())).Returns<List<DiagnosticData>>(null);
+            var target = new Day3(_mockCsvHelper.Object);
+
+            // act
+            var result = target.LifeSupportRating("report.csv");
+
+            // assert
+            Assert.Equal((int)0, result);
+        }
+
+        [Fact]
+        public void Day3_LifeSupportRating_ShouldReturnZeroWhenPassedEmpty()
+        {
+            // arrange
+            var target = new Day3(_mockCsvHelper.Object);
+            var report = new List<DiagnosticData>();
+
+            // act
+            _mockCsvHelper.Setup(x => x.GetListOf<DiagnosticData>(It.IsAny<string>())).Returns(report);
+            var result = target.LifeSupportRating("report.csv");
+
+            // assert
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void Day3_LifeSupportRating_ShouldReturnWhenPassedData()
+        {
+            // arrange
+            var report = new List<DiagnosticData> 
+            { 
+                new DiagnosticData { Value = "00100" },
+                new DiagnosticData { Value = "11110" },
+                new DiagnosticData { Value = "10110" },
+                new DiagnosticData { Value = "10111" },
+                new DiagnosticData { Value = "10101" },
+                new DiagnosticData { Value = "01111" },
+                new DiagnosticData { Value = "00111" },
+                new DiagnosticData { Value = "11100" },
+                new DiagnosticData { Value = "10000" },
+                new DiagnosticData { Value = "11001" },
+                new DiagnosticData { Value = "00010" },
+                new DiagnosticData { Value = "01010" }
+            };
+            var target = new Day3(_mockCsvHelper.Object);
+
+            // act
+            _mockCsvHelper.Setup(x => x.GetListOf<DiagnosticData>(It.IsAny<string>())).Returns(report);
+            var result = target.LifeSupportRating("report.csv");
+
+            // assert
+            Assert.Equal(230, result);
+        }
+
+        [Fact]
+        public void Day3_LifeSupportRating_ToGetResult()
+        {
+            // arrange
+            var target = GetTarget();
+
+            // act
+            var result = target.LifeSupportRating("TestData/DiagnosticReport.csv");
+
+            // assert
+            Assert.Equal(2990784, result);
+        }
+
         private Day3 GetTarget()
         {
             return new Day3(new CsvService(new CsvHelperWrapper()));

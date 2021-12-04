@@ -76,7 +76,47 @@ namespace AdventOfCode.Solution.Year2021
 
         private int DecodeLifeSupportRating(List<DiagnosticData> report)
         {
-            throw new NotImplementedException();
+            if (report == null || report.Count < 1) return 0;
+
+            var totalBits = report.FirstOrDefault().Value.Count();
+            var oxygenData = new List<DiagnosticData>();
+            oxygenData.AddRange(report);
+
+            int bitIndex = 0;
+            while (oxygenData.Count > 1 && bitIndex <= totalBits)
+            {
+                oxygenData = FilterForOxygenData(oxygenData, bitIndex);
+                bitIndex++;
+            }
+
+            var cO2Data = new List<DiagnosticData>();
+            cO2Data.AddRange(report);
+
+            bitIndex = 0;
+            while (cO2Data.Count > 1 && bitIndex <= totalBits)
+            {
+                cO2Data = FilterForCO2Data(cO2Data, bitIndex);
+                bitIndex++;
+            }
+
+            int oxygemGeneratorRating = Convert.ToInt32(oxygenData.FirstOrDefault()?.Value, 2);
+            int cO2ScrubberRating = Convert.ToInt32(cO2Data.FirstOrDefault()?.Value, 2);
+
+            return oxygemGeneratorRating * cO2ScrubberRating;
+        }
+
+        private List<DiagnosticData> FilterForOxygenData(List<DiagnosticData> report, int index)
+        {
+            var zeros =  report.Where(x => x.Value[index] == '0');
+            var ones =  report.Where(x => x.Value[index] == '1');
+            return zeros.Count() > ones.Count() ? zeros.ToList() : ones.ToList();
+        }
+
+        private List<DiagnosticData> FilterForCO2Data(List<DiagnosticData> report, int index)
+        {
+            var zeros =  report.Where(x => x.Value[index] == '0');
+            var ones =  report.Where(x => x.Value[index] == '1');
+            return zeros.Count() <= ones.Count() ? zeros.ToList() : ones.ToList();
         }
 
         private int DecodePowerConsumption(List<DiagnosticData> report)
