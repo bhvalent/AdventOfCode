@@ -19,10 +19,11 @@ public class Day1Tests
     public void Day1_SonarSweep_ShouldReturnZeroWhenPassedNull()
     {
         // arrange
+        _mockCsvHelper.Setup(x => x.GetListOf<int>(It.IsAny<string>())).Returns<List<int>>(null);
         var target = new Day1(_mockCsvHelper.Object);
 
         // act
-        var result = target.SonarSweep((List<int>)null);
+        var result = target.SonarSweep("measurements.csv");
 
         // assert
         Assert.Equal(0, result);
@@ -32,10 +33,12 @@ public class Day1Tests
     public void Day1_SonarSweep_ShouldReturnZeroWhenPassedEmptyList()
     {
         // arrange
+        var measurements = new List<int>();
+        _mockCsvHelper.Setup(x => x.GetListOf<int>(It.IsAny<string>())).Returns(measurements);
         var target = new Day1(_mockCsvHelper.Object);
 
         // act
-        var result = target.SonarSweep(new List<int>());
+        var result = target.SonarSweep("measurements.csv");
 
         // assert
         Assert.Equal(0, result);
@@ -46,10 +49,11 @@ public class Day1Tests
     {
         // arrange
         var measurements = new List<int> { 1 };
+        _mockCsvHelper.Setup(x => x.GetListOf<int>(It.IsAny<string>())).Returns(measurements);
         var target = new Day1(_mockCsvHelper.Object);
 
         // act
-        var result = target.SonarSweep(measurements);
+        var result = target.SonarSweep("measurements.csv");
 
         // assert
         Assert.Equal(0, result);
@@ -60,10 +64,11 @@ public class Day1Tests
     {
         // arrange
         var measurements = new List<int> { 1, 2 };
+        _mockCsvHelper.Setup(x => x.GetListOf<int>(It.IsAny<string>())).Returns(measurements);
         var target = new Day1(_mockCsvHelper.Object);
 
         // act
-        var result = target.SonarSweep(measurements);
+        var result = target.SonarSweep("measurements.csv");
 
         // assert
         Assert.Equal(1, result);
@@ -74,10 +79,11 @@ public class Day1Tests
     {
         // arrange
         var measurements = new List<int> { 1, 2, 0 };
+        _mockCsvHelper.Setup(x => x.GetListOf<int>(It.IsAny<string>())).Returns(measurements);
         var target = new Day1(_mockCsvHelper.Object);
 
         // act
-        var result = target.SonarSweep(measurements);
+        var result = target.SonarSweep("measurements.csv");
 
         // assert
         Assert.Equal(1, result);
@@ -100,10 +106,11 @@ public class Day1Tests
     public void Day1_SonarSweepWithWindow_ShouldReturnZeroWhenPassedNull()
     {
         // arrange
+        _mockCsvHelper.Setup(x => x.GetListOf<int>(It.IsAny<string>())).Returns<List<int>>(null);
         var target = new Day1(_mockCsvHelper.Object);
 
         // act
-        var result = target.SonarSweepWithWindow((List<int>)null);
+        var result = target.SonarSweepWithWindow("measurements.csv");
 
         // assert
         Assert.Equal(0, result);
@@ -114,10 +121,11 @@ public class Day1Tests
     {
         // arrange
         var measurements = new List<int>();
+        _mockCsvHelper.Setup(x => x.GetListOf<int>(It.IsAny<string>())).Returns(measurements);
         var target = new Day1(_mockCsvHelper.Object);
 
         // act
-        var result = target.SonarSweepWithWindow(measurements);
+        var result = target.SonarSweepWithWindow("measurements.csv");
 
         // assert
         Assert.Equal(0, result);
@@ -128,10 +136,11 @@ public class Day1Tests
     {
         // arrange
         var measurements = new List<int> { 1 };
+        _mockCsvHelper.Setup(x => x.GetListOf<int>(It.IsAny<string>())).Returns(measurements);
         var target = new Day1(_mockCsvHelper.Object);
 
         // act
-        var result = target.SonarSweepWithWindow(measurements);
+        var result = target.SonarSweepWithWindow("measurements.csv");
 
         // assert
         Assert.Equal(0, result);
@@ -142,10 +151,11 @@ public class Day1Tests
     {
         // arrange
         var measurements = new List<int> { 1, 2 };
+        _mockCsvHelper.Setup(x => x.GetListOf<int>(It.IsAny<string>())).Returns(measurements);
         var target = new Day1(_mockCsvHelper.Object);
 
         // act
-        var result = target.SonarSweepWithWindow(measurements);
+        var result = target.SonarSweepWithWindow("measurements.csv");
 
         // assert
         Assert.Equal(0, result);
@@ -156,10 +166,11 @@ public class Day1Tests
     {
         // arrange
         var measurements = new List<int> { 1, 2, 3 };
+        _mockCsvHelper.Setup(x => x.GetListOf<int>(It.IsAny<string>())).Returns(measurements);
         var target = new Day1(_mockCsvHelper.Object);
 
         // act
-        var result = target.SonarSweepWithWindow(measurements);
+        var result = target.SonarSweepWithWindow("measurements.csv");
 
         // assert
         Assert.Equal(0, result);
@@ -170,10 +181,11 @@ public class Day1Tests
     {
         // arrange
         var measurements = new List<int> { 1, 2, 3, 4 };
+        _mockCsvHelper.Setup(x => x.GetListOf<int>(It.IsAny<string>())).Returns(measurements);
         var target = new Day1(_mockCsvHelper.Object);
 
         // act
-        var result = target.SonarSweepWithWindow(measurements);
+        var result = target.SonarSweepWithWindow("measurements.csv");
 
         // assert
         Assert.Equal(1, result);
@@ -184,10 +196,11 @@ public class Day1Tests
     {
         // arrange
         var measurements = new List<int> { 1, 2, 3, 4, 0 };
+        _mockCsvHelper.Setup(x => x.GetListOf<int>(It.IsAny<string>())).Returns(measurements);
         var target = new Day1(_mockCsvHelper.Object);
 
         // act
-        var result = target.SonarSweepWithWindow(measurements);
+        var result = target.SonarSweepWithWindow("measurements.csv");
 
         // assert
         Assert.Equal(1, result);

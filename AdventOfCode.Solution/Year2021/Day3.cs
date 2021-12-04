@@ -33,18 +33,53 @@ namespace AdventOfCode.Solution.Year2021
             then multiply them together. What is the power consumption of the submarine? 
             (Be sure to represent your answer in decimal, not binary.)
         */
-        public int PowerConsumption(List<DiagnosticData> report)
-        {
-            return DecodeReport(report);
-        }
-
         public int PowerConsumption(string filepath)
         {
             var report = _csvService.GetListOf<DiagnosticData>(filepath);
-            return DecodeReport(report);
+            return DecodePowerConsumption(report);
         }
 
-        private int DecodeReport(List<DiagnosticData> report)
+        /*
+            Next, you should verify the life support rating, which can be determined by multiplying 
+            the oxygen generator rating by the CO2 scrubber rating.
+
+            Both the oxygen generator rating and the CO2 scrubber rating are values that can be found 
+            in your diagnostic report - finding them is the tricky part. Both values are located using a 
+            similar process that involves filtering out values until only one remains. Before searching for 
+            either rating value, start with the full list of binary numbers from your diagnostic report and 
+            consider just the first bit of those numbers. Then:
+
+                - Keep only numbers selected by the bit criteria for the type of rating value for which you 
+                  are searching. Discard numbers which do not match the bit criteria.
+                - If you only have one number left, stop; this is the rating value for which you are searching.
+                - Otherwise, repeat the process, considering the next bit to the right.
+
+            The bit criteria depends on which type of rating value you want to find:
+
+                - To find oxygen generator rating, determine the most common value (0 or 1) in the current bit position, 
+                  and keep only numbers with that bit in that position. If 0 and 1 are equally common, keep values with 
+                  a 1 in the position being considered.
+                - To find CO2 scrubber rating, determine the least common value (0 or 1) in the current bit position, 
+                  and keep only numbers with that bit in that position. If 0 and 1 are equally common, keep values with a 
+                  0 in the position being considered.
+
+            Use the binary numbers in your diagnostic report to calculate the oxygen generator rating and CO2 scrubber rating, 
+            then multiply them together. What is the life support rating of the submarine? 
+            (Be sure to represent your answer in decimal, not binary.)
+
+        */
+        public int LifeSupportRating(string filepath)
+        {
+            var report = _csvService.GetListOf<DiagnosticData>(filepath);
+            return DecodeLifeSupportRating(report);
+        }
+
+        private int DecodeLifeSupportRating(List<DiagnosticData> report)
+        {
+            throw new NotImplementedException();
+        }
+
+        private int DecodePowerConsumption(List<DiagnosticData> report)
         {
             if (report == null || report.Count < 1) return 0;
             

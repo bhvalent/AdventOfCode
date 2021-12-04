@@ -20,10 +20,11 @@ namespace AdventOfCode.Test.Year2021
         public void Day2_Dive_ShouldReturnZeroWhenPassedNull()
         {
             // arrange
+            _mockCsvHelper.Setup(x => x.GetListOf<DiveMeasurement>(It.IsAny<string>())).Returns<List<DiveMeasurement>>(null);
             var target = new Day2(_mockCsvHelper.Object);
 
             // act
-            var result = target.Dive((List<DiveMeasurement>)null);
+            var result = target.Dive("measurements.csv");
 
             // assert
             Assert.Equal(0, result);
@@ -33,10 +34,12 @@ namespace AdventOfCode.Test.Year2021
         public void Day2_Dive_ShouldReturnZeroWhenPassedEmpty()
         {
             // arrange
+            var measurements = new List<DiveMeasurement>();
+            _mockCsvHelper.Setup(x => x.GetListOf<DiveMeasurement>(It.IsAny<string>())).Returns(measurements);
             var target = new Day2(_mockCsvHelper.Object);
 
             // act
-            var result = target.Dive(new List<DiveMeasurement>());
+            var result = target.Dive("measurements.csv");
 
             // assert
             Assert.Equal(0, result);
@@ -64,10 +67,11 @@ namespace AdventOfCode.Test.Year2021
                     Value = 2
                 }
 			};
+            _mockCsvHelper.Setup(x => x.GetListOf<DiveMeasurement>(It.IsAny<string>())).Returns(measurements);
             var target = new Day2(_mockCsvHelper.Object);
 
             // act
-            var result = target.Dive(measurements);
+            var result = target.Dive("measurements.csv");
 
             // assert
             Assert.Equal(1, result);
@@ -110,10 +114,11 @@ namespace AdventOfCode.Test.Year2021
                     Value = 2
                 }
 			};
+            _mockCsvHelper.Setup(x => x.GetListOf<DiveMeasurement>(It.IsAny<string>())).Returns(measurements);
             var target = new Day2(_mockCsvHelper.Object);
 
             // act
-            var result = target.Dive(measurements);
+            var result = target.Dive("measurements.csv");
 
             // assert
             Assert.Equal(150, result);
@@ -136,10 +141,11 @@ namespace AdventOfCode.Test.Year2021
         public void Day2_DiveWithAim_ShouldReturnZeroWhenPassedNull()
         {
             // arrange
+            _mockCsvHelper.Setup(x => x.GetListOf<DiveMeasurement>(It.IsAny<string>())).Returns<List<DiveMeasurement>>(null);
             var target = new Day2(_mockCsvHelper.Object);
 
             // act
-            var result = target.DiveWithAim((List<DiveMeasurement>)null);
+            var result = target.DiveWithAim("measurements.csv");
 
             // assert
             Assert.Equal(0, result);
@@ -149,10 +155,12 @@ namespace AdventOfCode.Test.Year2021
         public void Day2_DiveWithAim_ShouldReturnZeroWhenPassedEmpty()
         {
             // arrange
+            var measurements = new List<DiveMeasurement>();
+            _mockCsvHelper.Setup(x => x.GetListOf<DiveMeasurement>(It.IsAny<string>())).Returns(measurements);
             var target = new Day2(_mockCsvHelper.Object);
 
             // act
-            var result = target.DiveWithAim(new List<DiveMeasurement>());
+            var result = target.DiveWithAim("measurements.csv");
 
             // assert
             Assert.Equal(0, result);
@@ -180,10 +188,11 @@ namespace AdventOfCode.Test.Year2021
                     Value = 2
                 }
             };
+            _mockCsvHelper.Setup(x => x.GetListOf<DiveMeasurement>(It.IsAny<string>())).Returns(measurements);
             var target = new Day2(_mockCsvHelper.Object);
 
             // act
-            var result = target.DiveWithAim(measurements);
+            var result = target.DiveWithAim("measurements.csv");
 
             // assert
             Assert.Equal(0, result);
@@ -226,10 +235,11 @@ namespace AdventOfCode.Test.Year2021
                     Value = 2
                 }
             };
+            _mockCsvHelper.Setup(x => x.GetListOf<DiveMeasurement>(It.IsAny<string>())).Returns(measurements);
             var target = new Day2(_mockCsvHelper.Object);
 
             // act
-            var result = target.DiveWithAim(measurements);
+            var result = target.DiveWithAim("measurements.csv");
 
             // assert
             Assert.Equal(900, result);

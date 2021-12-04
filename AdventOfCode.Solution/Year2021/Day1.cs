@@ -30,11 +30,6 @@ namespace AdventOfCode.Solution.Year2021
             
             How many measurements are larger than the previous measurement?
         */
-        public int SonarSweep(List<int> measurements)
-        {
-            return GetNumberOfIncreases(measurements);
-        }
-
         public int SonarSweep(string filepath)
         {
             var measurements = _csvHelper.GetListOf<int>(filepath);
@@ -50,11 +45,6 @@ namespace AdventOfCode.Solution.Year2021
 
             How many sums are larger than the previous sum?
         */
-        public int SonarSweepWithWindow(List<int> measurements)
-        {
-            return GetSlidingWindowIncreases(measurements);
-        }
-
         public int SonarSweepWithWindow(string filepath)
         {
             var measurements = _csvHelper.GetListOf<int>(filepath);

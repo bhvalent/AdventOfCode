@@ -28,11 +28,6 @@ namespace AdventOfCode.Solution.Year2021
             Calculate the horizontal position and depth you would have after following the planned course. 
             What do you get if you multiply your final horizontal position by your final depth?
         */
-        public int Dive(List<DiveMeasurement> measurements)
-        {
-            return GetFinalDepth(measurements) * GetFinalHorizontal(measurements);
-        }
-
         public int Dive(string filepath)
         {
             var measurements = _csvHelper.GetListOf<DiveMeasurement>(filepath);
@@ -52,12 +47,6 @@ namespace AdventOfCode.Solution.Year2021
 
             What do you get if you multiply your final horizontal position by your final depth?
         */
-        public int DiveWithAim(List<DiveMeasurement> measurements)
-        {
-            var finalPosition = GetFinalPostition(measurements);
-            return finalPosition.Item1 * finalPosition.Item2;
-        }
-
         public int DiveWithAim(string filepath)
         {
             var measurements = _csvHelper.GetListOf<DiveMeasurement>(filepath);

@@ -20,10 +20,11 @@ namespace AdventOfCode.Test.Year2021
         public void Day3_PowerConsumption_ShouldReturnZeroWhenPassedNull()
         {
             // arrange
+            _mockCsvHelper.Setup(x => x.GetListOf<DiagnosticData>(It.IsAny<string>())).Returns<List<DiagnosticData>>(null);
             var target = new Day3(_mockCsvHelper.Object);
 
             // act
-            var result = target.PowerConsumption((List<DiagnosticData>)null);
+            var result = target.PowerConsumption("report.csv");
 
             // assert
             Assert.Equal((int)0, result);
@@ -34,9 +35,11 @@ namespace AdventOfCode.Test.Year2021
         {
             // arrange
             var target = new Day3(_mockCsvHelper.Object);
+            var report = new List<DiagnosticData>();
 
             // act
-            var result = target.PowerConsumption(new List<DiagnosticData>());
+            _mockCsvHelper.Setup(x => x.GetListOf<DiagnosticData>(It.IsAny<string>())).Returns(report);
+            var result = target.PowerConsumption("report.csv");
 
             // assert
             Assert.Equal(0, result);
@@ -52,10 +55,11 @@ namespace AdventOfCode.Test.Year2021
                 new DiagnosticData { Value = "10" }, 
                 new DiagnosticData { Value = "00" } 
             };
+            _mockCsvHelper.Setup(x => x.GetListOf<DiagnosticData>(It.IsAny<string>())).Returns(report);
             var target = new Day3(_mockCsvHelper.Object);
 
             // act
-            var result = target.PowerConsumption(report);
+            var result = target.PowerConsumption("report.csv");
 
             // assert
             Assert.Equal(2, result);
@@ -80,10 +84,11 @@ namespace AdventOfCode.Test.Year2021
                 new DiagnosticData { Value = "00010" },
                 new DiagnosticData { Value = "01010" }
             };
+            _mockCsvHelper.Setup(x => x.GetListOf<DiagnosticData>(It.IsAny<string>())).Returns(report);
             var target = new Day3(_mockCsvHelper.Object);
 
             // act
-            var result = target.PowerConsumption(report);
+            var result = target.PowerConsumption("report.csv");
 
             // assert
             Assert.Equal(198, result);
